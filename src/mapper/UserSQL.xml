@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 需要这个xml来发生映射 -->
+<!-- book.xml建立关联并且执行相关操作 -->
+<!-- 这个相当于之前用到的DbConnection -->
+<!DOCTYPE mapper
+         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 目录一定要指定 -->
+<mapper namespace="mapper.UserMapper">
+	<!-- 这里就是所有的映射 1.user和表发生关联 2.user相关操作的sql语句全部在这 -->
+	<!-- id和UserMapper里的函数名一致 -->
+	<!-- resulttype为数据的返回类型 -->
+    <!-- parameterType为输入参数的类型 -->
+    <!-- 取值用#{} -->
+    <select id="User_GetAll" resultType="User">
+		select * from user_info
+	</select>
+    
+    <select id="User_GetByAccount" parameterType="String" resultType="User">
+    	select * from user_info where user_account = #{_parameter}
+    </select>
+    
+	<insert id="User_Add" parameterType="User">
+		insert into user_info(user_account,user_password) values(#{user_account},#{user_password})
+	</insert>
+	
+	<update id="User_Update" parameterType="User">
+		update user_info set user_nickname=#{user_nickname},user_avatar=#{user_avatar} where user_account=#{user_account}
+	</update>
+</mapper>
