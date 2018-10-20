@@ -11,6 +11,12 @@ public interface UserService {
 	//根据账号查找用户
 	public User User_GetByAccount(String user_account);
 	
+	//根据关键词查找用户（查找类型为用户昵称）
+	public List<User> User_SearchAllByNickname(String keyword);
+	
+	//根据关键词查找用户（查找类型为用户账号）
+		public List<User> User_SearchAllByAccount(String keyword);
+	
 	//添加用户
 	public void User_Add(User user);
 	

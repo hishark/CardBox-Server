@@ -45,4 +45,16 @@ public class UserServiceImp implements UserService {
 		userMapper.User_Update(user);
 	}
 
+	@Override
+	public List<User> User_SearchAllByNickname(String keyword) {
+		// TODO Auto-generated method stub
+		return userMapper.User_SearchAllByNickname(keyword);
+	}
+
+	@Override
+	public List<User> User_SearchAllByAccount(String keyword) {
+		// TODO Auto-generated method stub
+		return userMapper.User_SearchAllByAccount(keyword);
+	}
+
 }

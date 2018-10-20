@@ -20,6 +20,16 @@
     	select * from user_info where user_account = #{_parameter}
     </select>
     
+    <select id="User_SearchAllByNickname" parameterType="String" resultType="User">
+    	         
+    	select * from user_info where user_nickname like  '%${_parameter}%'
+    </select>
+    
+    <select id="User_SearchAllByAccount" parameterType="String" resultType="User">
+    	         
+    	select * from user_info where user_account like  '%${_parameter}%'
+    </select>
+    
 	<insert id="User_Add" parameterType="User">
 		insert into user_info(user_account,user_password) values(#{user_account},#{user_password})
 	</insert>
