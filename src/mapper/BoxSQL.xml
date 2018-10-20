@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 需要这个xml来发生映射 -->
+<!-- book.xml建立关联并且执行相关操作 -->
+<!-- 这个相当于之前用到的DbConnection -->
+<!DOCTYPE mapper
+         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 目录一定要指定 -->
+<mapper namespace="mapper.BoxMapper">
+ <resultMap type="Box" id="BoxResultMap"> 
+  <result column="box_id" property="box_id" /> 
+  <result column="box_name" property="box_name" /> 
+  <result column="box_type" property="box_type" /> 
+  <result column="box_create_time" property="box_create_time"/> 
+  <result column="box_love" property="box_love"/> 
+  <result column="box_side" property="box_side"/> 
+  <!-- association处理has-a关系 --> 
+  <!--注意：这种方式javaType必须指定，表示supervisor的类型是Teacher，否则会报错 --> 
+  <association property="user" javaType="User"> 
+   <!-- 用户自身的属性与数据库字段的映射 --> 
+   <result property="user_account" column="user_account"/> 
+   <result property="user_nickname" column="user_nickname"/> 
+   <result property="user_avatar" column="user_avatar"/> 
+   <result property="user_password" column="user_password"/> 
+  </association> 
+ </resultMap>
+
+	<!-- 这里就是所有的映射 1.user和表发生关联 2.user相关操作的sql语句全部在这 -->
+	<!-- id和BoxMapper里的函数名一致 -->
+	<!-- resulttype为数据的返回类型 -->
+    <!-- parameterType为输入参数的类型 -->
+    <!-- 取值用#{} -->
+    <select id="GetBoxByType_All" resultMap="BoxResultMap" parameterType="String">
+		select *
+		from box,user_info
+		where box_name like '%${_parameter}%' and box.user_account = user_info.user_account
+	</select>
+	
+	<select id="GetBoxByType_Study" resultMap="BoxResultMap" parameterType="String">
+		select *
+		from box,user_info
+		where box_type = '学习' and box_name like '%${_parameter}%' and box.user_account = user_info.user_account
+	</select>
+	
+	<select id="GetBoxByType_Life" resultMap="BoxResultMap" parameterType="String">
+		select *
+		from box,user_info
+		where box_type = '生活' and box_name like '%${_parameter}%' and box.user_account = user_info.user_account
+	</select>
+
+</mapper>
