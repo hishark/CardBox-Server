@@ -8,8 +8,34 @@ public class Box {
 	User user;
 	String box_type;
 	Timestamp box_create_time;
+	Timestamp box_update_time;
 	int box_love;
 	String box_side;
+	String box_authority;
+	int box_cardnum;
+	
+	
+	
+	
+	
+	public Timestamp getBox_update_time() {
+		return box_update_time;
+	}
+	public void setBox_update_time(Timestamp box_update_time) {
+		this.box_update_time = box_update_time;
+	}
+	public int getBox_cardnum() {
+		return box_cardnum;
+	}
+	public void setBox_cardnum(int box_cardnum) {
+		this.box_cardnum = box_cardnum;
+	}
+	public String getBox_authority() {
+		return box_authority;
+	}
+	public void setBox_authority(String box_authority) {
+		this.box_authority = box_authority;
+	}
 	public String getBox_id() {
 		return box_id;
 	}

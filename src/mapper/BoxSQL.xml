@@ -14,7 +14,9 @@
   <result column="box_type" property="box_type" /> 
   <result column="box_create_time" property="box_create_time"/> 
   <result column="box_love" property="box_love"/> 
+   <result column="box_cardnum" property="box_cardnum"/> 
   <result column="box_side" property="box_side"/> 
+  <result column="box_authority" property="box_authority"/> 
   <!-- association处理has-a关系 --> 
   <!--注意：这种方式javaType必须指定，表示supervisor的类型是Teacher，否则会报错 --> 
   <association property="user" javaType="User"> 
@@ -34,19 +36,54 @@
     <select id="GetBoxByType_All" resultMap="BoxResultMap" parameterType="String">
 		select *
 		from box,user_info
-		where box_name like '%${_parameter}%' and box.user_account = user_info.user_account
+		where box_name like '%${_parameter}%' and box.user_account = user_info.user_account and box_authority = '公开'
 	</select>
 	
 	<select id="GetBoxByType_Study" resultMap="BoxResultMap" parameterType="String">
 		select *
 		from box,user_info
-		where box_type = '学习' and box_name like '%${_parameter}%' and box.user_account = user_info.user_account
+		where box_type = '学习' and box_name like '%${_parameter}%' and box.user_account = user_info.user_account and box_authority = '公开'
 	</select>
 	
 	<select id="GetBoxByType_Life" resultMap="BoxResultMap" parameterType="String">
 		select *
 		from box,user_info
-		where box_type = '生活' and box_name like '%${_parameter}%' and box.user_account = user_info.user_account
+		where box_type = '生活' and box_name like '%${_parameter}%' and box.user_account = user_info.user_account and box_authority = '公开'
 	</select>
+	
+	<select id="GetBoxByType_Work" resultMap="BoxResultMap" parameterType="String">
+		select *
+		from box,user_info
+		where box_type = '工作' and box_name like '%${_parameter}%' and box.user_account = user_info.user_account and box_authority = '公开'
+	</select>
+	
+	<select id="GetBoxByType_Entertainment" resultMap="BoxResultMap" parameterType="String">
+		select *
+		from box,user_info
+		where box_type = '娱乐' and box_name like '%${_parameter}%' and box.user_account = user_info.user_account and box_authority = '公开'
+	</select>
+	
+	<select id="GetBoxByUserAccount" resultMap="BoxResultMap" parameterType="String">
+		select *
+		from box,user_info
+		where box.user_account = user_info.user_account and box.user_account = '${_parameter}'
+		order by box.box_create_time desc
+	</select>
+	
+	<!-- 添加卡盒 -->
+	<insert id="AddBox" parameterType="Box">
+		insert into box (box_id,box_name,user_account,box_type,box_create_time,box_update_time,box_side,box_authority) 
+		values(#{box_id},#{box_name},#{user.user_account},#{box_type},#{box_create_time},#{box_update_time},#{box_side},#{box_authority})
+	</insert>
+	
+	<update id="UpdateBox" parameterType="Box">
+		update box
+		set box_name = #{box_name},box_type = #{box_type},box_update_time=#{box_update_time},box_authority=#{box_authority}
+		where box_id = #{box_id}
+	</update>
+	
+	<delete id="DeleteBox" parameterType="String">
+	delete from box where box_id = '${_parameter}'
+	</delete>
 
 </mapper>

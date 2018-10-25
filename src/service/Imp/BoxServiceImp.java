@@ -42,4 +42,40 @@ public class BoxServiceImp implements BoxService {
 		return boxMapper.GetBoxByType_Life(box_name);
 	}
 
+	@Override
+	public List<Box> GetBoxByUserAccount(String user_account) {
+		// TODO Auto-generated method stub
+		return boxMapper.GetBoxByUserAccount(user_account);
+	}
+
+	@Override
+	public void AddBox(Box box) {
+		// TODO Auto-generated method stub
+		boxMapper.AddBox(box);
+	}
+
+	@Override
+	public List<Box> GetBoxByType_Work(String box_name) {
+		// TODO Auto-generated method stub
+		return boxMapper.GetBoxByType_Work(box_name);
+	}
+
+	@Override
+	public List<Box> GetBoxByType_Entertainment(String box_name) {
+		// TODO Auto-generated method stub
+		return boxMapper.GetBoxByType_Entertainment(box_name);
+	}
+
+	@Override
+	public void UpdateBox(Box box) {
+		// TODO Auto-generated method stub
+		boxMapper.UpdateBox(box);
+	}
+
+	@Override
+	public void DeleteBox(String boxid) {
+		// TODO Auto-generated method stub
+		boxMapper.DeleteBox(boxid);
+	}
+
 }
