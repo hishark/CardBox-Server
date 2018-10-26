@@ -12,7 +12,8 @@
   <result column="box_id" property="box_id" /> 
   <result column="box_name" property="box_name" /> 
   <result column="box_type" property="box_type" /> 
-  <result column="box_create_time" property="box_create_time"/> 
+  <result column="box_create_time" property="box_create_time"/>
+  <result column="box_update_time" property="box_update_time"/>  
   <result column="box_love" property="box_love"/> 
    <result column="box_cardnum" property="box_cardnum"/> 
   <result column="box_side" property="box_side"/> 

@@ -114,7 +114,8 @@ public class BoxController {
         boxList = boxService.GetBoxByUserAccount(user_account);
         System.out.println(boxList.get(0).getBox_authority());
         JSONArray arrayBox = JSONArray.fromObject(boxList);
-        
+        System.out.println(boxList.get(0).getBox_create_time().toString());
+        System.out.println(boxList.get(0).getBox_update_time().toString());
         
         /*
 		 * 先封装成text即字符串 再转换成JSON
