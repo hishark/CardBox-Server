@@ -14,10 +14,6 @@ public class Box {
 	String box_authority;
 	int box_cardnum;
 	
-	
-	
-	
-	
 	public Timestamp getBox_update_time() {
 		return box_update_time;
 	}

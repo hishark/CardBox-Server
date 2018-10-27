@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 需要这个xml来发生映射 -->
+<!-- book.xml建立关联并且执行相关操作 -->
+<!-- 这个相当于之前用到的DbConnection -->
+<!DOCTYPE mapper
+         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 目录一定要指定 -->
+<mapper namespace="mapper.CardMapper">
+ <resultMap type="Card" id="CardResultMap"> 
+  <result column="card_id" property="card_id" /> 
+  <result column="card_type" property="card_type" /> 
+  <result column="card_front" property="card_front" /> 
+  <result column="card_back" property="card_back"/>
+  <result column="card_create_time" property="card_create_time"/>  
+  <result column="card_marktype" property="card_marktype"/> 
+  <!-- association处理has-a关系 --> 
+  <!--注意：这种方式javaType必须指定，表示supervisor的类型是Teacher，否则会报错 --> 
+  <association property="box" javaType="Box"> 
+   <result column="box_id" property="box_id" /> 
+  <result column="box_name" property="box_name" /> 
+  <result column="box_type" property="box_type" /> 
+  <result column="box_create_time" property="box_create_time"/>
+  <result column="box_update_time" property="box_update_time"/>  
+  <result column="box_love" property="box_love"/> 
+   <result column="box_cardnum" property="box_cardnum"/> 
+  <result column="box_side" property="box_side"/> 
+  <result column="box_authority" property="box_authority"/> 
+  <!-- association处理has-a关系 --> 
+  <!--注意：这种方式javaType必须指定，表示supervisor的类型是Teacher，否则会报错 --> 
+  <association property="user" javaType="User"> 
+   <!-- 用户自身的属性与数据库字段的映射 --> 
+   <result property="user_account" column="user_account"/> 
+   <result property="user_nickname" column="user_nickname"/> 
+   <result property="user_avatar" column="user_avatar"/> 
+   <result property="user_password" column="user_password"/> 
+  </association> 
+  </association> 
+ </resultMap>
+
+	<!-- 这里就是所有的映射 1.user和表发生关联 2.user相关操作的sql语句全部在这 -->
+	<!-- id和BoxMapper里的函数名一致 -->
+	<!-- resulttype为数据的返回类型 -->
+    <!-- parameterType为输入参数的类型 -->
+    <!-- 取值用#{} -->
+	<select id="GetCardByBoxId" resultMap="CardResultMap" parameterType="String">
+		select *
+		from box,card,user_info
+		where box.box_id = card.box_id and box.user_account = user_info.user_account and box.box_id = '${_parameter}'
+		order by card.card_create_time
+	</select>
+	
+
+</mapper>
