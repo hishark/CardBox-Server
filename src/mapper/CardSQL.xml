@@ -47,8 +47,42 @@
 		select *
 		from box,card,user_info
 		where box.box_id = card.box_id and box.user_account = user_info.user_account and box.box_id = '${_parameter}'
-		order by card.card_create_time
+		order by card.card_create_time desc
 	</select>
 	
+	<select id="GetCardByCardId" parameterType="String" resultType="Card">
+		select *
+		from card
+		where card_id = '${_parameter}'
+	</select>
+	
+	<update id="UpdateCardMarktypeDone" parameterType="String">
+		update card
+		set card_marktype = '已标记'
+		where card_id = '${_parameter}'
+	</update>
+	
+	<update id="UpdateCardMarktypeUnDone" parameterType="String">
+		update card
+		set card_marktype = '未标记'
+		where card_id = '${_parameter}'
+	</update>
+	
+	<delete id="DeleteCardById" parameterType="String">
+		delete from card
+		where card_id = '${_parameter}'
+	</delete>
+	
+	<update id="UpdateCard" parameterType="Card">
+		update card
+		set card_front = #{card_front},card_back = #{card_back}
+		where card_id = #{card_id}
+	</update>
+	
+	
+	<insert id="AddCard" parameterType="Card">
+		insert into card(card_id,box_id,card_front,card_back,card_type,card_marktype,card_create_time) 
+		values(#{card_id},#{box.box_id},#{card_front},#{card_back},#{card_type},#{card_marktype},#{card_create_time})	
+	</insert>
 
 </mapper>

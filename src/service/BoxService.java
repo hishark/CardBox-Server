@@ -23,4 +23,10 @@ public interface BoxService {
 	
 	//删除盒子
 	public void DeleteBox(String boxid);
+	
+	//根据box_id查找盒子
+	public Box GetBoxById(String box_id); 
+	
+	//更新盒子时间
+	public void UpdateBoxTime(Box box);
 }

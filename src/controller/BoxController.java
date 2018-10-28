@@ -212,19 +212,19 @@ public class BoxController {
         String box_id=request.getParameter("box_id");
         String box_name = request.getParameter("box_name");
         String box_type = request.getParameter("box_type");
-        String box_update_time = request.getParameter("box_update_time");
+        //String box_update_time = request.getParameter("box_update_time");
         String box_authority = request.getParameter("box_authority");
 
         System.out.println(box_id);
         
-        long time1 = Long.parseLong(box_update_time);
-        Timestamp update_time = new Timestamp(time1);
+        //long time1 = Long.parseLong(box_update_time);
+        //Timestamp update_time = new Timestamp(time1);
       
         Box box = new Box();
         box.setBox_id(box_id);
         box.setBox_name(box_name);
         box.setBox_type(box_type);
-        box.setBox_update_time(update_time);
+        //box.setBox_update_time(update_time);
         box.setBox_authority(box_authority);
       
         
@@ -233,7 +233,7 @@ public class BoxController {
 	
 	
 	/**
-	 * 更新卡盒信息
+	 * 删除卡盒
 	 * @param request
 	 * @param response
 	 */
@@ -247,4 +247,29 @@ public class BoxController {
         boxService.DeleteBox(box_id);
     }
 
+	
+	/**
+	 * 更新卡盒时间
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("UpdateBoxTime")
+    public void UpdateBoxTime(HttpServletRequest request, HttpServletResponse response){
+        JSONObject jsonObject = new JSONObject();
+       
+        String box_id=request.getParameter("box_id");
+        String box_update_time = request.getParameter("box_update_time");
+
+        System.out.println(box_update_time);
+        
+        long time1 = Long.parseLong(box_update_time);
+        Timestamp update_time = new Timestamp(time1);
+      
+        Box box = new Box();
+        box.setBox_id(box_id);
+        box.setBox_update_time(update_time);
+       
+     
+        boxService.UpdateBoxTime(box);
+    }
 }

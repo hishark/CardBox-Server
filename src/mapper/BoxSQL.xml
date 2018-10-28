@@ -77,14 +77,27 @@
 		values(#{box_id},#{box_name},#{user.user_account},#{box_type},#{box_create_time},#{box_update_time},#{box_side},#{box_authority})
 	</insert>
 	
+	<!-- ,box_update_time=#{box_update_time} -->
 	<update id="UpdateBox" parameterType="Box">
 		update box
-		set box_name = #{box_name},box_type = #{box_type},box_update_time=#{box_update_time},box_authority=#{box_authority}
+		set box_name = #{box_name},box_type = #{box_type},box_authority=#{box_authority}
 		where box_id = #{box_id}
 	</update>
 	
 	<delete id="DeleteBox" parameterType="String">
-	delete from box where box_id = '${_parameter}'
+		delete from box where box_id = '${_parameter}'
 	</delete>
+	
+	<select id="GetBoxById" parameterType="String" resultType="Box">
+		select *
+		from box
+		where box_id = '${_parameter}'
+	</select>
+	
+	<update id="UpdateBoxTime" parameterType="Box">
+		update box
+		set box_update_time=#{box_update_time}
+		where box_id = #{box_id}
+	</update>
 
 </mapper>

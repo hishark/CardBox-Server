@@ -78,4 +78,16 @@ public class BoxServiceImp implements BoxService {
 		boxMapper.DeleteBox(boxid);
 	}
 
+	@Override
+	public Box GetBoxById(String box_id) {
+		// TODO Auto-generated method stub
+		return boxMapper.GetBoxById(box_id);
+	}
+
+	@Override
+	public void UpdateBoxTime(Box box) {
+		// TODO Auto-generated method stub
+		boxMapper.UpdateBoxTime(box);
+	}
+
 }
