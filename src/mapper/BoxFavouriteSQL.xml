@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 需要这个xml来发生映射 -->
+<!-- book.xml建立关联并且执行相关操作 -->
+<!-- 这个相当于之前用到的DbConnection -->
+<!DOCTYPE mapper
+         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 目录一定要指定 -->
+<mapper namespace="mapper.BoxFavouriteMapper">
+	<!-- 这里就是所有的映射 1.user和表发生关联 2.user相关操作的sql语句全部在这 -->
+	<!-- id和BoxMapper里的函数名一致 -->
+	<!-- resulttype为数据的返回类型 -->
+    <!-- parameterType为输入参数的类型 -->
+    <!-- 取值用#{} -->
+	
+	<insert id="AddBoxFavourite" parameterType="BoxFavourite">
+		insert into box_favourite
+		values(#{box.box_id},#{user.user_account},#{favourite_time});
+	</insert>
+
+	<delete id="DeleteBoxFavourite" parameterType="BoxFavourite">
+		delete from box_favourite
+		where box_id = #{box.box_id} and user_account = #{user.user_account}
+	</delete>
+
+</mapper>

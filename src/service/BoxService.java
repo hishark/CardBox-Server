@@ -29,4 +29,7 @@ public interface BoxService {
 	
 	//更新盒子时间
 	public void UpdateBoxTime(Box box);
+	
+	//查找当前用户喜欢的盒子列表
+	public List<Box> GetFavouriteBox(String user_account);
 }

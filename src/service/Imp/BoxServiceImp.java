@@ -90,4 +90,10 @@ public class BoxServiceImp implements BoxService {
 		boxMapper.UpdateBoxTime(box);
 	}
 
+	@Override
+	public List<Box> GetFavouriteBox(String user_account) {
+		// TODO Auto-generated method stub
+		return boxMapper.GetFavouriteBox(user_account);
+	}
+
 }
