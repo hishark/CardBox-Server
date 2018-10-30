@@ -280,7 +280,7 @@ public class BoxController {
 	@RequestMapping("GetFavouriteBox")
     public void GetFavouriteBox(HttpServletRequest request, HttpServletResponse response){
         JSONObject jsonObject = new JSONObject();
-        //获取android客户端传递值的方式：在这里拿到需要插入用户的学号
+        //获取android客户端传递值的方式：在这里拿到需要插入用户账号
         String user_account=request.getParameter("user_account");
  
         

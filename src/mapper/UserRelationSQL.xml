@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 需要这个xml来发生映射 -->
+<!-- book.xml建立关联并且执行相关操作 -->
+<!-- 这个相当于之前用到的DbConnection -->
+<!DOCTYPE mapper
+         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 目录一定要指定 -->
+<mapper namespace="mapper.UserRelationMapper">
+	<!-- 这里就是所有的映射 1.user和表发生关联 2.user相关操作的sql语句全部在这 -->
+	<!-- id和BoxMapper里的函数名一致 -->
+	<!-- resulttype为数据的返回类型 -->
+    <!-- parameterType为输入参数的类型 -->
+    <!-- 取值用#{} -->
+	
+	<insert id="AddUserRelation" parameterType="UserRelation">
+		insert into user_relation 
+		values(#{user_follow.user_account},#{user_befollowed.user_account},#{follow_time})
+	</insert>
+	
+	<delete id="DeleteUserRelation" parameterType="UserRelation">
+		delete from user_relation
+		where user_follow = #{user_follow.user_account} and user_befollowed = #{user_befollowed.user_account}
+	</delete>
+	
+	<select id="GetFollowCount" parameterType="String" resultType="Integer">
+		select count(*)
+		from user_relation
+		where user_follow = '${_parameter}'
+	</select>
+	
+	<select id="GetFollowerCount" parameterType="String" resultType="Integer">
+		select count(*)
+		from user_relation
+		where user_befollowed = '${_parameter}'
+	</select>
+
+</mapper>
