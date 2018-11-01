@@ -96,4 +96,10 @@ public class BoxServiceImp implements BoxService {
 		return boxMapper.GetFavouriteBox(user_account);
 	}
 
+	@Override
+	public void ClearBox(String boxid) {
+		// TODO Auto-generated method stub
+		boxMapper.ClearBox(boxid);
+	}
+
 }

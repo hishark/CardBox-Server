@@ -7,6 +7,29 @@
          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- 目录一定要指定 -->
 <mapper namespace="mapper.UserMessageMapper">
+<resultMap type="UserMessage" id="MessageResultMap"> 
+  <result column="message_content" property="message_content" /> 
+  <result column="message_send_time" property="message_send_time" /> 
+ 
+  <!-- association处理has-a关系 --> 
+  <!--注意：这种方式javaType必须指定，表示supervisor的类型是Teacher，否则会报错 --> 
+  <association property="user_sender" javaType="User"> 
+   <!-- 用户自身的属性与数据库字段的映射 --> 
+   <result property="user_account" column="user_account"/> 
+   <result property="user_nickname" column="user_nickname"/> 
+   <result property="user_avatar" column="user_avatar"/> 
+   <result property="user_password" column="user_password"/> 
+  </association> 
+  <association property="user_receiver" javaType="User"> 
+   <!-- 用户自身的属性与数据库字段的映射 --> 
+   <result property="user_account" column="user_receiver"/> 
+   <result property="user_nickname" column=""/> 
+   <result property="user_avatar" column=""/> 
+   <result property="user_password" column=""/> 
+  </association> 
+ </resultMap>
+
+
 	<!-- 这里就是所有的映射 1.user和表发生关联 2.user相关操作的sql语句全部在这 -->
 	<!-- id和BoxMapper里的函数名一致 -->
 	<!-- resulttype为数据的返回类型 -->
@@ -17,6 +40,19 @@
 		insert into user_message
 		values(#{user_sender.user_account},#{user_receiver.user_account},#{message_content},#{message_send_time})
 	</insert>
- 
+	
+	<select id="GetSendMessageByUserAcocunt" parameterType="String" resultMap="MessageResultMap">
+		select *
+		from user_message,user_info 
+		where user_sender = '${_parameter}' and user_sender = user_info.user_account 
+		order by message_send_time desc
+	</select>
+	
+	<select id="GetReceiveMessageByUserAcocunt" parameterType="String" resultMap="MessageResultMap">
+		select *
+		from user_message,user_info
+		where user_receiver = '${_parameter}' and user_sender = user_info.user_account
+		order by message_send_time desc
+	</select>
 
 </mapper>

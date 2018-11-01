@@ -34,5 +34,23 @@
 		from user_relation
 		where user_befollowed = '${_parameter}'
 	</select>
+	
+	<select id="GetAllFollow" parameterType="String" resultType="User">
+		select *
+		from user_info 
+		where user_account in (
+			select user_befollowed
+			from user_relation
+			where user_follow = '${_parameter}')
+	</select>
+	
+	<select id="GetAllFollower" parameterType="String" resultType="User">
+		select *
+		from user_info
+		where user_account in(
+			select user_follow
+			from user_relation
+			where user_befollowed = '${_parameter}')
+	</select>
 
 </mapper>

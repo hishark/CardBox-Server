@@ -24,6 +24,9 @@ public interface BoxMapper {
 	//删除盒子
 	public void DeleteBox(String boxid);
 	
+	//清空盒子
+	public void ClearBox(String boxid);
+	
 	//根据box_id查找盒子
 	public Box GetBoxById(String box_id); 
  

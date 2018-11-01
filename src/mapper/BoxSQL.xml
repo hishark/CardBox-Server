@@ -87,6 +87,11 @@
 	<delete id="DeleteBox" parameterType="String">
 		delete from box where box_id = '${_parameter}'
 	</delete>
+		
+	<delete id="ClearBox" parameterType="String">
+		delete from card
+		where box_id = '${_parameter}'
+	</delete>
 	
 	<select id="GetBoxById" parameterType="String" resultType="Box">
 		select *

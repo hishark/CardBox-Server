@@ -246,6 +246,21 @@ public class BoxController {
 
         boxService.DeleteBox(box_id);
     }
+	
+	/**
+	 * «Âø’ø®∫–
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("ClearBox")
+    public void ClearBox(HttpServletRequest request, HttpServletResponse response){
+        JSONObject jsonObject = new JSONObject();
+       
+        String box_id=request.getParameter("box_id");
+        System.out.println(box_id+"µΩ’‚¿≤");
+
+        boxService.ClearBox(box_id);
+    }
 
 	
 	/**
