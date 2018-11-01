@@ -33,7 +33,8 @@
    <result property="user_account" column="user_account"/> 
    <result property="user_nickname" column="user_nickname"/> 
    <result property="user_avatar" column="user_avatar"/> 
-   <result property="user_password" column="user_password"/> 
+   <result property="user_password" column="user_password"/>
+   <result property="user_intro" column="user_intro"/>  
   </association> 
   </association> 
  </resultMap>

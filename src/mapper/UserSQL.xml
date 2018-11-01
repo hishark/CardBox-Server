@@ -35,6 +35,6 @@
 	</insert>
 	
 	<update id="User_Update" parameterType="User">
-		update user_info set user_nickname=#{user_nickname},user_avatar=#{user_avatar} where user_account=#{user_account}
+		update user_info set user_nickname=#{user_nickname},user_avatar=#{user_avatar},user_intro = #{user_intro} where user_account=#{user_account}
 	</update>
 </mapper>

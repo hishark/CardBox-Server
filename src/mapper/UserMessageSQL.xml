@@ -19,6 +19,7 @@
    <result property="user_nickname" column="user_nickname"/> 
    <result property="user_avatar" column="user_avatar"/> 
    <result property="user_password" column="user_password"/> 
+   <result property="user_intro" column="user_intro"/> 
   </association> 
   <association property="user_receiver" javaType="User"> 
    <!-- 用户自身的属性与数据库字段的映射 --> 
@@ -26,6 +27,7 @@
    <result property="user_nickname" column=""/> 
    <result property="user_avatar" column=""/> 
    <result property="user_password" column=""/> 
+   <result property="user_intro" column=""/> 
   </association> 
  </resultMap>
 

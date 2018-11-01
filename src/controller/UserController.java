@@ -318,8 +318,8 @@ public class UserController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping("updateUserNickname")
-    public void updateUserNickname(HttpServletRequest request, HttpServletResponse response){
+	@RequestMapping("updateUserInfo")
+    public void updateUserInfo(HttpServletRequest request, HttpServletResponse response){
         JSONObject jsonObject = new JSONObject();
        
         //获取android客户端传递值的方式：在这里拿到需要插入用户的学号
@@ -328,8 +328,10 @@ public class UserController {
         User user = userService.User_GetByAccount(user_account);
         
         String user_nickname=request.getParameter("user_nickname");
+        String user_intro=request.getParameter("user_intro");
         System.out.println(user_nickname);
         user.setUser_nickname(user_nickname);
+        user.setUser_intro(user_intro);
         
         userService.User_Update(user);
     }
