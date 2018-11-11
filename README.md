@@ -52,10 +52,19 @@
 
 <img src="https://user-images.githubusercontent.com/29684201/48299975-e68bec80-e50f-11e8-98b2-ed6253b5d198.png" width="35%" height="35%" />
 
+查看其他用户的盒子时可以点击红心表示喜欢，再次点击红心可以取消喜欢。
+
+<img src="https://user-images.githubusercontent.com/29684201/48310340-d7b54080-e5c8-11e8-97e0-bc7d8426736c.png" width="35%" height="35%" />
+
 #### 编辑盒子
 点击标题栏的修改卡盒可以进行盒子信息的编辑。
 
 <img src="https://user-images.githubusercontent.com/29684201/48299976-e68bec80-e50f-11e8-89dd-801b0e580cb2.png" width="35%" height="35%" />
+
+#### 查看我喜欢的卡盒
+在[我喜欢的卡盒]中可以查看所有喜欢过的卡盒，并且可以看到卡盒作者对该卡盒的最近更新时间。
+
+<img src="https://user-images.githubusercontent.com/29684201/48310373-3b3f6e00-e5c9-11e8-9c8d-aaa3adc656b1.png" width="35%" height="35%" />
 
 ### 卡片管理功能
 #### 添加卡片
